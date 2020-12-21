@@ -7,13 +7,15 @@
   3. render()
   4. componentDidMount()   📌
 
-## 更新階段: 在 component 執行 `this.setState()` 或由父組件 render 觸發
+## 更新階段: 
+在 component 執行 `this.setState()` 或父組件重新 render 時觸發
   1. shouldComponetUpdate()，若是強制更新(forceUpdate()) 則無
   2. UNSAFE_componetWillUpdate()   👎
   3. render()   📌
   4. componentDidUpate()
 
-## 卸載: 由 ReactDOM.unmountComponentAtNode() 觸發
+## 卸載: 
+可由 ReactDOM.unmountComponentAtNode() 觸發
   1. componentWillUnmount()   📌
 
 
