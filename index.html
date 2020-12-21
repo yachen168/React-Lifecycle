@@ -24,16 +24,6 @@
       }
     }
 
-    UNSAFE_componentWillMount(){    // componentWillMount 為舊版，應盡量避免使用
-      console.log('componentWillMount: parent 組件將掛載');
-    }
-
-    componentDidMount(){
-      console.log('componentDidMount: parent 組件掛載完成');
-    }
-
-  /* ======================================== */
-
     add = () => {
       const { num } = this.state; 
       this.setState({
@@ -49,7 +39,14 @@
       this.forceUpdate();
     }
 
-  /* ========== state 更新 ========== */
+    UNSAFE_componentWillMount(){    // componentWillMount 為舊版，應盡量避免使用
+      console.log('componentWillMount: parent 組件將掛載');
+    }
+
+    componentDidMount(){
+      console.log('componentDidMount: parent 組件掛載完成');
+    }
+
     shouldComponentUpdate(){
       console.log('shouldComponentUpdate: 是否要更新 parent 組件');
       return true;   // 預設 return true
@@ -59,11 +56,9 @@
       console.log('componentWillMount: parent 組件將更新');
     }
 
-    componentDidUpdate(){
-      console.log('componentDidUpdate: parent 組件更新完成');
+    componentDidUpdate(preProps, prevState){
+      console.log('componentDidUpdate: parent 組件更新完成', preProps, prevState);
     }
-
-  /* ======================================== */
 
     render(){
       console.log('render: 渲染畫面')
@@ -82,7 +77,14 @@
     }
   }
 
+
+  /* ============== child 組件 ============== */
   class Child extends React.Component {
+    static getDerivedStateFromProps(props, state){
+      console.log('getDerivedStateFromProps', props, state);
+      return null;
+    }
+
     UNSAFE_componentWillMount(){   // componentWillMount 為舊版，應盡量避免使用
       console.log('componentWillMount: child 組件將掛載');
     }
@@ -104,8 +106,13 @@
       console.log('componentWillMount: child 組件將更新');
     }
 
-    componentDidUpdate(){
-      console.log('componentDidUpdate: child 組件更新完成');
+    getSnapshotBeforeUpdate(){
+      console.log('getSnapshotBeforeUpdate');
+      return 123    // 將傳給 componentDidUpdate 的第三個參數
+    }
+
+    componentDidUpdate(preProps, prevState, snapshotValue){
+      console.log('componentDidUpdate: child 組件更新完成', preProps, prevState, snapshotValue);
     }
 
     render(){
