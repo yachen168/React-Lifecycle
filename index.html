@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component {
+  /* ========== 組件掛載時 ========== */
+    constructor(props) {
+      console.log('constructor 執行')
+      super(props)
+      this.state = {
+        num: 0
+      }
+    }
+
+    UNSAFE_componentWillMount(){    // componentWillMount 為舊版，應盡量避免使用
+      console.log('componentWillMount: parent 組件將掛載');
+    }
+
+    componentDidMount(){
+      console.log('componentDidMount: parent 組件掛載完成');
+    }
+
+  /* ======================================== */
+
+    add = () => {
+      const { num } = this.state; 
+      this.setState({
+        num: num + 1
+      })
+    }
+
+    unmount = () => {
+      ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+    }
+
+    force = () => {
+      this.forceUpdate();
+    }
+
+  /* ========== state 更新 ========== */
+    shouldComponentUpdate(){
+      console.log('shouldComponentUpdate: 是否要更新 parent 組件');
+      return true;   // 預設 return true
+    }
+
+    UNSAFE_componentWillUpdate(){    // componentWillUpdate 為舊版，應盡量避免使用
+      console.log('componentWillMount: parent 組件將更新');
+    }
+
+    componentDidUpdate(){
+      console.log('componentDidUpdate: parent 組件更新完成');
+    }
+
+  /* ======================================== */
+
+    render(){
+      console.log('render: 渲染畫面')
+      return (
+        <div>
+          <div className="parent">
+            <h1>這是 parent component</h1>
+            <h3>總和: {this.state.num}</h3>
+            <button onClick={ this. add }>點擊 +1</button>
+            <button onClick={ this.unmount }>點擊 unmount </button>
+            <button onClick={ this.force }>forceUpdate(state 不更新)</button>
+          </div>
+          <Child num={this.state.num}/>
+        </div>
+      )
+    }
+  }
+
+  class Child extends React.Component {
+    UNSAFE_componentWillMount(){   // componentWillMount 為舊版，應盡量避免使用
+      console.log('componentWillMount: child 組件將掛載');
+    }
+
+    componentDidMount(){
+      console.log('componentDidMount: child 組件掛載完成');
+    }
+    
+    UNSAFE_componentWillReceiveProps(props){    // componentWillReceiveProps 為舊版，應盡量避免使用
+      console.log('componentWillReceiveProps',props);
+    }
+
+    shouldComponentUpdate(){
+      console.log('shouldComponentUpdate: 是否要更新 child 組件');
+      return true;   // 預設 return true
+    }
+
+    UNSAFE_componentWillUpdate(){    // componentWillUpdate 為舊版，應盡量避免使用
+      console.log('componentWillMount: child 組件將更新');
+    }
+
+    componentDidUpdate(){
+      console.log('componentDidUpdate: child 組件更新完成');
+    }
+
+    render(){
+      return (
+        <div className="child">
+          <h1>這是 child component</h1>
+          <h3>{this.props.num}</h3>
+        </div>
+      )
+    }
+  }
+
+  ReactDOM.render(
+    <App/>, document.getElementById('root')
+  )
+</script>
+</body>
+</html>

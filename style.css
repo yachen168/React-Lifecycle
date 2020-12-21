@@ -1,0 +1,14 @@
+.parent, .child {
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+.parent h1{
+  margin: 0;
+  color: rgb(126, 13, 13);
+}
+
+.child h1 {
+  color: rgb(56, 13, 126);
+}
