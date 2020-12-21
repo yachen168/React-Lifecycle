@@ -1,5 +1,6 @@
 # React-Lifecycle
 
+[生命週期圖](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 ## 初始化階段 ReactDOM.render() 
   1. constructor()
   2. UNSAFE_componentWillMount()   👎
