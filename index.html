@@ -9,8 +9,8 @@
 <body>
   <div id="root"></div>
 
-<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.1/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 <script type="text/babel">
@@ -65,6 +65,7 @@
       return (
         <div>
           <div className="parent">
+            <span>*** 打開 console 檢視***</span>
             <h1>這是 parent component</h1>
             <h3>總和: {this.state.num}</h3>
             <button onClick={ this. add }>點擊 +1</button>
@@ -80,10 +81,12 @@
 
   /* ============== child 組件 ============== */
   class Child extends React.Component {
-    static getDerivedStateFromProps(props, state){
-      console.log('getDerivedStateFromProps', props, state);
-      return null;
-    }
+    state = {}
+
+    // static getDerivedStateFromProps(props, state){
+    //   console.log('getDerivedStateFromProps', props, state);
+    //   return null;
+    // }
 
     UNSAFE_componentWillMount(){   // componentWillMount 為舊版，應盡量避免使用
       console.log('componentWillMount: child 組件將掛載');
@@ -99,7 +102,7 @@
 
     shouldComponentUpdate(){
       console.log('shouldComponentUpdate: 是否要更新 child 組件');
-      return true;   // 預設 return true
+      return true;   // 預設 return true => 更新
     }
 
     UNSAFE_componentWillUpdate(){    // componentWillUpdate 為舊版，應盡量避免使用
@@ -108,7 +111,7 @@
 
     getSnapshotBeforeUpdate(){
       console.log('getSnapshotBeforeUpdate');
-      return 123    // 將傳給 componentDidUpdate 的第三個參數
+      return 123    // return 值將傳給 componentDidUpdate 作為第三個參數
     }
 
     componentDidUpdate(preProps, prevState, snapshotValue){
@@ -119,7 +122,7 @@
       return (
         <div className="child">
           <h1>這是 child component</h1>
-          <h3>{this.props.num}</h3>
+          <h3>props 來的:{ this.props.num }</h3>
         </div>
       )
     }
