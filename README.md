@@ -4,14 +4,14 @@
 [生命週期圖](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 ## 初始化階段 ReactDOM.render() 
   1. constructor()
-  2. UNSAFE_componentWillMount()   👎
+  2. UNSAFE_componentWillMount()   👎 (React 17.0)
   3. render() 📌
   4. componentDidMount()   📌
 
 ## 更新階段: 
 在 component 執行 `this.setState()` 或父組件重新 render 時觸發
   1. shouldComponetUpdate()，若是強制更新(forceUpdate()) 則無
-  2. UNSAFE_componetWillUpdate()   👎
+  2. UNSAFE_componetWillUpdate()   👎 (React 17.0)
   3. render()
   4. componentDidUpate()
 
@@ -20,14 +20,16 @@
   1. componentWillUnmount()   📌
 
 
-## props 內容更新
- 1. UNSAFE_componentWillReceiveProps()   👎
+## props 內容更新 
+ 1. UNSAFE_componentWillReceiveProps()   👎 (React 17.0)
 
 
 ## 生命週期變動
-新版生命週期比舊版的新增 2 個 hooks，幾乎用不到:
-- getDerivedStateFromProps
-- getSnapshotBeforeUpdate
+- 新版生命週期(React 17.0)廢棄 3 個 hooks: `componentWillMount`、`componentWillUpdate`、
+`componentWillReceiveProps`，須加`UNSAFE_`，否則會出現警告
+
+- 新版生命週期比舊版的新增 2 個 hooks，幾乎用不到:
+`getDerivedStateFromProps`、`getSnapshotBeforeUpdate`
 
 
 註:
