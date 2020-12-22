@@ -8,6 +8,9 @@
 </head>
 <body>
   <div id="root"></div>
+  <div class="image">
+    <img src="./diagram.png" alt="">
+  </div>
 
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.1/umd/react.production.min.js"></script>
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.1/umd/react-dom.production.min.js"></script>
@@ -67,8 +70,8 @@
           <div className="parent">
             <span>*** 打開 console 檢視***</span>
             <h1>這是 parent component</h1>
-            <h3>總和: {this.state.num}</h3>
-            <button onClick={ this.add }>點擊 +1</button>
+            <h3>num: {this.state.num}</h3>
+            <button onClick={ this.add }>點擊 num+1</button>
             <button onClick={ this.unmount }>點擊 unmount </button>
             <button onClick={ this.force }>forceUpdate(state 不更新)</button>
           </div>
@@ -123,7 +126,7 @@
       return (
         <div className="child">
           <h1>這是 child component</h1>
-          <h3>props 來的: { this.props.num }</h3>
+          <h3>props 來的 num: { this.props.num }</h3>
         </div>
       )
     }

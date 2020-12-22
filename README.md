@@ -1,7 +1,14 @@
 # React-Lifecycle
-[Demo: https://yachen168.github.io/React-Lifecycle/](https://yachen168.github.io/React-Lifecycle/)
+## 說明
+以巢狀 component 的方式演示 React 的生命週期。
 
-[生命週期圖](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+Demo: [https://yachen168.github.io/React-Lifecycle/](https://yachen168.github.io/React-Lifecycle/)
+
+![](./diagram.png)
+圖片來源: [react-lifecycle-methods-diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+
+<br>
+
 ## 初始化階段 ReactDOM.render() 
   1. constructor()
   2. UNSAFE_componentWillMount()   👎 (React 17.0)
